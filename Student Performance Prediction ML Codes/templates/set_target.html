@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Your Target</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFEB55;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            background-color: #640D5F;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFEB55;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-item:hover {
+            color: #EE66A6;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 20px 20px;
+            background-color: #D91656;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .hero-section h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .search-form {
+            margin-top: 30px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .input-container input[type="number"] {
+            padding: 15px;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-right: 15px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .search-btn {
+            padding: 15px 30px;
+            background-color: #EE66A6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            max-width: 200px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #640D5F;
+        }
+
+        /* Performance Details Section */
+        .performance-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        .current-performance,
+        .target-details {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .current-performance:hover,
+        .target-details:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .current-performance h2,
+        .target-details h2 {
+            margin-top: 0;
+            color: #640D5F;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .current-performance h2 i,
+        .target-details h2 i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: #D91656;
+        }
+
+        /* Style for performance details items */
+        .performance-details p,
+        .performance-details li {
+            margin: 10px 0;
+        }
+
+        /* Error Message Display */
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* New Schedule Section */
+        .new-schedule {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff; /* Change background to white */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+            animation: fadeIn 0.5s;
+            display: none; /* Initially hidden */
+            transition: transform 0.3s;
+            text-align: center; /* Center content */
+        }
+
+        .new-schedule.active {
+            display: block; /* Show when active */
+            transform: translateY(0); /* Initial position */
+        }
+
+        .new-schedule h2 {
+            color: #640D5F; /* Heading color */
+            font-size: 1.8rem; /* Larger heading */
+            margin-bottom: 20px;
+            position: relative; /* For the shadow effect */
+        }
+
+        .new-schedule h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 50%;
+            height: 5px;
+            background: linear-gradient(90deg, #D91656, #EE66A6);
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .new-schedule label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #640D5F; /* Label color */
+        }
+
+        .new-schedule select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        .new-schedule select:focus {
+            border-color: #640D5F; /* Change border on focus */
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            background-color: #640D5F;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .nav-links {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .hero-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .search-btn {
+                max-width: 100%;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Performance Analyzer</div>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-item">Home</a></li>
+                <li><a href="#analyze" class="nav-item">Analyze</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>Set Your Target</h1>
+            <form class="search-form" action="{{ url_for('set_target') }}" method="POST">
+                <div class="input-container">
+                    <input type="number" name="target_rank" placeholder="Enter Desired Rank" required>
+                    <button class="search-btn" type="submit">Calculate Target</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Error Message Display -->
+        {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+
+        <!-- Performance Details Section -->
+        <div class="performance-details">
+            <div class="current-performance">
+                <h2><i class="fas fa-chart-line"></i>Current Performance Details</h2>
+                {% if current_performance %}
+                <p><strong>Average Total Marks:</strong> {{ current_performance['avg_marks'] }}</p>
+                <p><strong>Maths Average:</strong> {{ current_performance['subject_averages']['Maths'] }}</p>
+                <p><strong>Physics Average:</strong> {{ current_performance['subject_averages']['Physics'] }}</p>
+                <p><strong>Chemistry Average:</strong> {{ current_performance['subject_averages']['Chemistry'] }}</p>
+                <p><strong>Expected Rank:</strong> {{ current_performance['expected_rank'] }}</p>
+                {% else %}
+                <p>No current performance data available.</p>
+                {% endif %}
+            </div>
+
+            <div class="target-details">
+                <h2><i class="fas fa-bullseye"></i>Target Details</h2>
+                {% if target_rank %}
+                <p>To achieve a rank of <strong>{{ target_rank }}</strong>, you need:</p>
+                <ul>
+                    <li><strong>Total Marks:</strong> {{ required_total_marks }}</li>
+                    <li><strong>Maths Marks:</strong> {{ required_maths_marks }}</li>
+                    <li><strong>Physics Marks:</strong> {{ required_physics_marks }}</li>
+                    <li><strong>Chemistry Marks:</strong> {{ required_chemistry_marks }}</li>
+                </ul>
+                {% else %}
+                <p>No target details available.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- New Schedule Container -->
+        <div class="new-schedule {% if target_rank %}active{% endif %}">
+            <h2><i class="fas fa-calendar-alt"></i> Study Plan Duration</h2>
+            <form action="{{ url_for('generate_schedule') }}" method="POST">
+                <label for="weeks">Select Duration:</label>
+                <select name="weeks" id="weeks" required>
+                    <option value="" disabled selected>Select duration</option>
+                    <option value="4">4 Weeks</option>
+                    <option value="8">8 Weeks</option>
+                    <option value="12">12 Weeks</option>
+                </select>
+                <button class="search-btn" type="submit">Generate Schedule</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Performance Analyzer. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

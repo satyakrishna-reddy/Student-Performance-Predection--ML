@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {  
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFEB55; /* Yellow background for a clean look */
+            color: #333; /* Dark text for better readability */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: #5A0B5F; /* Deep violet for a professional tone */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFEB55; /* Contrasting bright yellow for emphasis */
+        }
+        
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-item {
+            color: #FFFFFF; /* White for a clean contrast */
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            color: #EE66A6; /* Subtle lighter pink on hover for sophistication */
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+            text-align: center;
+        }
+        
+        /* Header */
+        h1 {
+            color: #5A0B5F; /* Consistent deep violet */
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Question Styles */
+        .question {
+            background: linear-gradient(135deg, #EE66A6, #FF9A00); /* Light Pink to Orange */
+            border: 2px solid #5A0B5F; /* Darker violet border for structure */
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 25px;
+            text-align: left;
+            animation: fadeInUp 0.5s ease-in-out;
+            transition: transform 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateY(-5px);
+        }
+        
+        .question h3 {
+            font-size: 1.6rem;
+            color: #5A0B5F;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        /* Option Styles */
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .option {
+            background-color: white; /* White background for options */
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        
+        .option:hover {
+            background-color: #5A0B5F; /* Violet on hover */
+            color: #FFFFFF; /* Change text color to white for contrast */
+        }
+        
+        .submit-btn {
+            padding: 12px 25px; /* Button padding */
+            background-color: #5A0B5F; /* Deep violet background */
+            color: #FFFFFF; /* White text */
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 1.2rem; /* Larger text */
+            cursor: pointer; /* Pointer cursor on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+        }
+        
+        .submit-btn:hover {
+            background-color: #D91656; /* Darker pink on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        .submit-btn-link {
+            text-decoration: none; /* Remove underline from anchor */
+        }
+        
+        
+        
+        /* Footer */
+        footer {
+            background-color: #5A0B5F;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .question h3 {
+                font-size: 1.4rem;
+            }
+        
+            .option {
+                font-size: 1rem;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Study Planner</div>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-item">Home</a></li>
+                <li><a href="#analyze" class="nav-item">Analyze</a></li>
+                <li><a href="{{ url_for('set_target') }}" class="nav-item">Set Target</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Mock Test</h1>
+
+       <!-- Mathematics Section -->
+<div class="subject">
+    <h2>Mathematics (10 Questions)</h2>
+    <!-- Question 1 -->
+    <div class="question">1. What is the solution to the equation \( x^2 - 4x + 4 = 0 \)?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q1" value="a"> a) 0, 4</label>
+        <label class="option"><input type="radio" name="q1" value="b"> b) 2, 2</label>
+        <label class="option"><input type="radio" name="q1" value="c"> c) 1, 3</label>
+        <label class="option"><input type="radio" name="q1" value="d"> d) No solution</label>
+    </div>
+    
+    <!-- Question 2 -->
+    <div class="question">2. The integral of \( \sin(x) \) with respect to \( x \) is:</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q2" value="a"> a) \( \cos(x) \)</label>
+        <label class="option"><input type="radio" name="q2" value="b"> b) \( -\cos(x) \)</label>
+        <label class="option"><input type="radio" name="q2" value="c"> c) \( -\sin(x) \)</label>
+        <label class="option"><input type="radio" name="q2" value="d"> d) \( \tan(x) \)</label>
+    </div>
+    
+    <!-- Question 3 -->
+    <div class="question">3. The derivative of \( e^{x^2} \) is:</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q3" value="a"> a) \( e^{x^2} \cdot 2x \)</label>
+        <label class="option"><input type="radio" name="q3" value="b"> b) \( e^{x^2} \cdot x \)</label>
+        <label class="option"><input type="radio" name="q3" value="c"> c) \( 2e^x \)</label>
+        <label class="option"><input type="radio" name="q3" value="d"> d) \( e^{x^2} \cdot x^2 \)</label>
+    </div>
+    
+    <!-- Question 4 -->
+    <div class="question">4. Find the distance between the points \( (3, 4) \) and \( (6, 8) \).</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q4" value="a"> a) 2</label>
+        <label class="option"><input type="radio" name="q4" value="b"> b) 5</label>
+        <label class="option"><input type="radio" name="q4" value="c"> c) 7</label>
+        <label class="option"><input type="radio" name="q4" value="d"> d) 10</label>
+    </div>
+    
+    <!-- Question 5 -->
+    <div class="question">5. What is the sum of the angles in a triangle?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q5" value="a"> a) 90 degrees</label>
+        <label class="option"><input type="radio" name="q5" value="b"> b) 180 degrees</label>
+        <label class="option"><input type="radio" name="q5" value="c"> c) 360 degrees</label>
+        <label class="option"><input type="radio" name="q5" value="d"> d) 270 degrees</label>
+    </div>
+    
+    <!-- Question 6 -->
+    <div class="question">6. The area of a circle is given by which formula?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q6" value="a"> a) \( \pi r^2 \)</label>
+        <label class="option"><input type="radio" name="q6" value="b"> b) \( 2\pi r \)</label>
+        <label class="option"><input type="radio" name="q6" value="c"> c) \( r^2 \)</label>
+        <label class="option"><input type="radio" name="q6" value="d"> d) \( \pi d \)</label>
+    </div>
+    
+    <!-- Question 7 -->
+    <div class="question">7. If \( a = 3 \) and \( b = 4 \), what is \( a^2 + b^2 \)?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q7" value="a"> a) 25</label>
+        <label class="option"><input type="radio" name="q7" value="b"> b) 20</label>
+        <label class="option"><input type="radio" name="q7" value="c"> c) 10</label>
+        <label class="option"><input type="radio" name="q7" value="d"> d) 7</label>
+    </div>
+    
+    <!-- Question 8 -->
+    <div class="question">8. What is the value of \( \log_{10}(100) \)?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q8" value="a"> a) 1</label>
+        <label class="option"><input type="radio" name="q8" value="b"> b) 2</label>
+        <label class="option"><input type="radio" name="q8" value="c"> b) 3</label>
+        <label class="option"><input type="radio" name="q8" value="d"> d) 0</label>
+    </div>
+    
+    <!-- Question 9 -->
+    <div class="question">9. If the angles of a triangle are \( 60^{\circ} \), \( 90^{\circ} \), and \( x^{\circ} \), what is \( x \)?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q9" value="a"> a) 30</label>
+        <label class="option"><input type="radio" name="q9" value="b"> b) 45</label>
+        <label class="option"><input type="radio" name="q9" value="c"> c) 60</label>
+        <label class="option"><input type="radio" name="q9" value="d"> d) 75</label>
+    </div>
+    
+    <!-- Question 10 -->
+    <div class="question">10. If \( f(x) = x^3 - 3x + 2 \), what is \( f(1) \)?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="q10" value="a"> a) 0</label>
+        <label class="option"><input type="radio" name="q10" value="b"> b) 1</label>
+        <label class="option"><input type="radio" name="q10" value="c"> c) 2</label>
+        <label class="option"><input type="radio" name="q10" value="d"> d) 3</label>
+    </div>
+</div>
+<!-- Physics Section -->
+<div class="subject">
+    <h2>Physics (10 Questions)</h2>
+    <div class="question">1. What is the unit of force?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq1" value="a"> a) Joule</label>
+        <label class="option"><input type="radio" name="pq1" value="b"> b) Newton</label>
+        <label class="option"><input type="radio" name="pq1" value="c"> c) Watt</label>
+        <label class="option"><input type="radio" name="pq1" value="d"> d) Pascal</label>
+    </div>
+    <div class="question">2. What is the acceleration due to gravity on Earth?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq2" value="a"> a) 9.81 m/s²</label>
+        <label class="option"><input type="radio" name="pq2" value="b"> b) 10 m/s²</label>
+        <label class="option"><input type="radio" name="pq2" value="c"> c) 9.8 m/s²</label>
+        <label class="option"><input type="radio" name="pq2" value="d"> d) 8.9 m/s²</label>
+    </div>
+    <div class="question">3. What is the principle of conservation of energy?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq3" value="a"> a) Energy cannot be created or destroyed</label>
+        <label class="option"><input type="radio" name="pq3" value="b"> b) Energy can be created and destroyed</label>
+        <label class="option"><input type="radio" name="pq3" value="c"> c) Energy is always constant</label>
+        <label class="option"><input type="radio" name="pq3" value="d"> d) Energy is lost in all processes</label>
+    </div>
+    <div class="question">4. What is the speed of light in vacuum?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq4" value="a"> a) 3 × 10^8 m/s</label>
+        <label class="option"><input type="radio" name="pq4" value="b"> b) 3 × 10^6 m/s</label>
+        <label class="option"><input type="radio" name="pq4" value="c"> c) 3 × 10^5 m/s</label>
+        <label class="option"><input type="radio" name="pq4" value="d"> d) 3 × 10^4 m/s</label>
+    </div>
+    <div class="question">5. What is the main source of energy for the Earth?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq5" value="a"> a) Wind</label>
+        <label class="option"><input type="radio" name="pq5" value="b"> b) Geothermal</label>
+        <label class="option"><input type="radio" name="pq5" value="c"> c) Solar</label>
+        <label class="option"><input type="radio" name="pq5" value="d"> d) Nuclear</label>
+    </div>
+    <div class="question">6. What is the phenomenon of bending of light called?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq6" value="a"> a) Reflection</label>
+        <label class="option"><input type="radio" name="pq6" value="b"> b) Refraction</label>
+        <label class="option"><input type="radio" name="pq6" value="c"> c) Diffraction</label>
+        <label class="option"><input type="radio" name="pq6" value="d"> d) Dispersion</label>
+    </div>
+    <div class="question">7. Which particle is negatively charged?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq7" value="a"> a) Proton</label>
+        <label class="option"><input type="radio" name="pq7" value="b"> b) Neutron</label>
+        <label class="option"><input type="radio" name="pq7" value="c"> c) Electron</label>
+        <label class="option"><input type="radio" name="pq7" value="d"> d) Positron</label>
+    </div>
+    <div class="question">8. What is the term for the rate of change of velocity?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq8" value="a"> a) Acceleration</label>
+        <label class="option"><input type="radio" name="pq8" value="b"> b) Velocity</label>
+        <label class="option"><input type="radio" name="pq8" value="c"> c) Speed</label>
+        <label class="option"><input type="radio" name="pq8" value="d"> d) Momentum</label>
+    </div>
+    <div class="question">9. What is the unit of work?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq9" value="a"> a) Joule</label>
+        <label class="option"><input type="radio" name="pq9" value="b"> b) Newton</label>
+        <label class="option"><input type="radio" name="pq9" value="c"> c) Watt</label>
+        <label class="option"><input type="radio" name="pq9" value="d"> d) Ampere</label>
+    </div>
+    <div class="question">10. What is the formula for calculating kinetic energy?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="pq10" value="a"> a) KE = mv^2</label>
+        <label class="option"><input type="radio" name="pq10" value="b"> b) KE = 1/2 mv^2</label>
+        <label class="option"><input type="radio" name="pq10" value="c"> c) KE = mgh</label>
+        <label class="option"><input type="radio" name="pq10" value="d"> d) KE = mv</label>
+    </div>
+</div>
+<!-- Chemistry Section -->
+<div class="subject">
+    <h2>Chemistry (10 Questions)</h2>
+    
+    <div class="question">1. What is the molecular formula of water?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq1" value="a"> a) H₂O</label>
+        <label class="option"><input type="radio" name="cq1" value="b"> b) O₂H₂</label>
+        <label class="option"><input type="radio" name="cq1" value="c"> c) H₂O₂</label>
+        <label class="option"><input type="radio" name="cq1" value="d"> d) HO</label>
+    </div>
+
+    <div class="question">2. What is the pH of pure water?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq2" value="a"> a) 0</label>
+        <label class="option"><input type="radio" name="cq2" value="b"> b) 7</label>
+        <label class="option"><input type="radio" name="cq2" value="c"> c) 14</label>
+        <label class="option"><input type="radio" name="cq2" value="d"> d) 10</label>
+    </div>
+
+    <div class="question">3. Which gas is produced during respiration?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq3" value="a"> a) Oxygen</label>
+        <label class="option"><input type="radio" name="cq3" value="b"> b) Nitrogen</label>
+        <label class="option"><input type="radio" name="cq3" value="c"> c) Carbon Dioxide</label>
+        <label class="option"><input type="radio" name="cq3" value="d"> d) Hydrogen</label>
+    </div>
+
+    <div class="question">4. What is the primary component of natural gas?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq4" value="a"> a) Ethylene</label>
+        <label class="option"><input type="radio" name="cq4" value="b"> b) Methane</label>
+        <label class="option"><input type="radio" name="cq4" value="c"> c) Propylene</label>
+        <label class="option"><input type="radio" name="cq4" value="d"> d) Butane</label>
+    </div>
+
+    <div class="question">5. What is the atomic number of carbon?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq5" value="a"> a) 6</label>
+        <label class="option"><input type="radio" name="cq5" value="b"> b) 12</label>
+        <label class="option"><input type="radio" name="cq5" value="c"> c) 8</label>
+        <label class="option"><input type="radio" name="cq5" value="d"> d) 14</label>
+    </div>
+
+    <div class="question">6. Which element is represented by the symbol 'O'?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq6" value="a"> a) Oxygen</label>
+        <label class="option"><input type="radio" name="cq6" value="b"> b) Osmium</label>
+        <label class="option"><input type="radio" name="cq6" value="c"> c) Gold</label>
+        <label class="option"><input type="radio" name="cq6" value="d"> d) Silver</label>
+    </div>
+
+    <div class="question">7. What is the chemical formula for table salt?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq7" value="a"> a) NaCl</label>
+        <label class="option"><input type="radio" name="cq7" value="b"> b) KCl</label>
+        <label class="option"><input type="radio" name="cq7" value="c"> c) CaCl₂</label>
+        <label class="option"><input type="radio" name="cq7" value="d"> d) MgCl₂</label>
+    </div>
+
+    <div class="question">8. What is the main gas in the Earth's atmosphere?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq8" value="a"> a) Oxygen</label>
+        <label class="option"><input type="radio" name="cq8" value="b"> b) Carbon Dioxide</label>
+        <label class="option"><input type="radio" name="cq8" value="c"> c) Nitrogen</label>
+        <label class="option"><input type="radio" name="cq8" value="d"> d) Helium</label>
+    </div>
+
+    <div class="question">9. What type of bond involves the sharing of electron pairs between atoms?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq9" value="a"> a) Ionic Bond</label>
+        <label class="option"><input type="radio" name="cq9" value="b"> b) Covalent Bond</label>
+        <label class="option"><input type="radio" name="cq9" value="c"> c) Metallic Bond</label>
+        <label class="option"><input type="radio" name="cq9" value="d"> d) Hydrogen Bond</label>
+    </div>
+
+    <div class="question">10. What is the process of converting a solid directly into a gas called?</div>
+    <div class="options">
+        <label class="option"><input type="radio" name="cq10" value="a"> a) Condensation</label>
+        <label class="option"><input type="radio" name="cq10" value="b"> b) Sublimation</label>
+        <label class="option"><input type="radio" name="cq10" value="c"> c) Evaporation</label>
+        <label class="option"><input type="radio" name="cq10" value="d"> d) Melting</label>
+    </div>
+</div>
+<a href="/" class="submit-btn-link">
+    <button type="button" class="submit-btn">Submit Test</button>
+</a>
+
+
+    </div>
+    <script>
+        function submitTest() {
+            alert("Test submitted! Thank you for participating.");
+            window.location.href = 'index.html';
+            // Implement further logic for handling test results
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+    
+
+    

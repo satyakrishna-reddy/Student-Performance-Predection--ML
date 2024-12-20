@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Week Study Plan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFEB55; /* Light yellow */
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            background-color: #5A0B5F; /* Darker violet */
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFEB55; /* Bright yellow */
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-item {
+            color: #FFFFFF; /* White */
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-item:hover {
+            color: #EE66A6; /* Lighter pink on hover */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Header Styles */
+        h1 {
+            color: #5A0B5F; /* Darker violet */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #D91656; /* Bright pink */
+            margin-bottom: 30px;
+        }
+
+        /* Week Styles */
+        .week {
+            background: linear-gradient(135deg, #FFEB55 0%, #D71678 100%); /* Bright gradient with pink */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            animation: slideUp 0.6s ease-in-out;
+            transition: transform 0.3s;
+        }
+
+        .week:hover {
+            transform: scale(1.02);
+        }
+
+        .week h2 {
+            font-size: 1.8rem;
+            color: #5A0B5F; /* Darker violet */
+            margin-bottom: 10px;
+        }
+
+        .week ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .week ul li {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #FFFFFF; /* White */
+            border-radius: 10px;
+            color: #555; /* Dark gray */
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .week ul li i {
+            color: #D91656; /* Bright pink */
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .week ul li:hover {
+            background-color: #FFEB55; /* Light yellow on hover */
+        }
+
+        /* Ensure the nav-item links inside .week are always black */
+        .week a.nav-item {
+            color: #000000; /* Black text */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Optional: Make the text bold */
+            transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Optional: Maintain the black color on hover */
+        .week a.nav-item:hover {
+            color: #000000; /* Keep the text black on hover */
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #EE66A6; /* Bright pink */
+            color: #FFFFFF; /* White */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background-color: #D91656; /* Darker pink */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #5A0B5F; /* Darker violet */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .week h2 {
+                font-size: 1.5rem;
+            }
+
+            .week ul li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Study Planner</div>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-item">Home</a></li>
+                <li><a href="templates/result.html" class="nav-item">Analyze</a></li>
+                <li><a href="{{ url_for('set_target') }}" class="nav-item">Set Target</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Your 12 Week Study Plan</h1>
+        <p>Prepare effectively with our structured 12-week study plan!</p>
+
+        <!-- Week 1 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 1</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Quadratic Equations | Physics - Kinematics | Chemistry - Mole Concept</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Complex Numbers | Physics - Laws of Motion | Chemistry - Atomic Structure</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Binomial Theorem | Physics - Work, Energy, and Power | Chemistry - Periodic Table & Periodicity</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Sequences and Series | Physics - Circular Motion | Chemistry - Chemical Bonding</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Permutations & Combinations | Physics - Center of Mass & Momentum | Chemistry - States of Matter</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Probability | Physics - Rotational Motion | Chemistry - Thermodynamics (Part 1)</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 1 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 2</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Matrices & Determinants | Physics - Gravitation | Chemistry - Thermodynamics (Part 2)</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Continuity & Differentiability (Part 1) | Physics - Mechanical Properties of Solids | Chemistry - Chemical Equilibrium</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Continuity & Differentiability (Part 2) | Physics - Mechanical Properties of Fluids | Chemistry - Ionic Equilibrium</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Application of Derivatives | Physics - Thermal Properties of Matter | Chemistry - Redox Reactions</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Integrals (Part 1) | Physics - Thermodynamics | Chemistry - Hydrocarbons</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Integrals (Part 2) | Physics - Kinetic Theory of Gases | Chemistry - Organic Chemistry Basics</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 2 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 3</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Differential Equations | Physics - Oscillations | Chemistry - Hydrocarbons (Part 2)</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Vectors | Physics - Waves | Chemistry - Environmental Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Three-Dimensional Geometry | Physics - Sound | Chemistry - Biomolecules</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Linear Programming | Physics - Wave Optics | Chemistry - Polymers</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Probability Distributions | Physics - Geometrical Optics | Chemistry - Solutions</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Statistics | Physics - Optics | Chemistry - Equilibrium & Redox Reactions</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 3 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 4</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Introduction to 3D Geometry | Physics - Electrostatics | Chemistry - Basic Concepts of Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Linear Algebra | Physics - Current Electricity | Chemistry - States of Matter (Gaseous State)</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Analytical Geometry | Physics - Magnetism | Chemistry - Thermochemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Complex Numbers | Physics - Electromagnetic Induction | Chemistry - Chemical Kinetics</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Probability | Physics - Alternating Current | Chemistry - Surface Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Conic Sections | Physics - Optics | Chemistry - Hydrocarbons (Alkenes & Alkynes)</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 4 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 5 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 5</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Trigonometric Ratios | Physics - Wave Motion | Chemistry - Organic Chemistry Basics</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Trigonometric Identities | Physics - Interference | Chemistry - Hydrocarbons (Alcohols & Ethers)</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Inverse Trigonometric Functions | Physics - Diffraction | Chemistry - Alcohols & Phenols</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Heights and Distances | Physics - Doppler Effect | Chemistry - Aldehydes & Ketones</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Limits | Physics - Optics | Chemistry - Carboxylic Acids</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Statistics | Physics - Atomic Physics | Chemistry - D & F Block Elements</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 5 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 6 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 6</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Probability | Physics - Mole Concept | Chemistry - Coordination Compounds</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Linear Programming | Physics - Chemical Bonding | Chemistry - Bio-Molecules</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Conic Sections | Physics - Hydrogen & Its Compounds | Chemistry - Environmental Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Statistics | Physics - Hydrocarbons | Chemistry - Chemical Kinetics</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Differential Equations | Physics - Thermodynamics | Chemistry - Surface Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Applications of Derivatives | Physics - Oscillations | Chemistry - Electrochemistry</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 6 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 7 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 7</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Sequences and Series | Physics - Gravitation | Chemistry - Thermodynamics (Part 2)</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Matrices | Physics - Mechanical Properties of Solids | Chemistry - Chemical Equilibrium</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Determinants | Physics - Mechanical Properties of Fluids | Chemistry - Ionic Equilibrium</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Vectors | Physics - Thermal Properties of Matter | Chemistry - Redox Reactions</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Linear Algebra | Physics - Kinetic Theory of Gases | Chemistry - Hydrocarbons (Alkenes & Alkynes)</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Probability Distributions | Physics - Thermodynamics | Chemistry - Organic Chemistry Basics</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 7 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 8 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 8</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Probability | Physics - Oscillations | Chemistry - Environmental Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Statistical Analysis | Physics - Waves | Chemistry - Hydrocarbons (Alcohols & Ethers)</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Graphs of Functions | Physics - Sound | Chemistry - Biomolecules</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Functions and Their Properties | Physics - Wave Optics | Chemistry - Polymers</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Limits and Continuity | Physics - Geometrical Optics | Chemistry - Solutions</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Linear Programming | Physics - Electrostatics | Chemistry - Basic Concepts of Chemistry</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 8 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 9 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 9</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Trigonometric Functions | Physics - Current Electricity | Chemistry - States of Matter (Gaseous State)</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Trigonometric Equations | Physics - Magnetism | Chemistry - Thermochemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Sequences and Series | Physics - Electromagnetic Induction | Chemistry - Chemical Kinetics</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Quadratic Equations | Physics - Alternating Current | Chemistry - Surface Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Matrices and Determinants | Physics - Optics | Chemistry - Hydrocarbons (Alkenes & Alkynes)</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Statistics | Physics - Atomic Physics | Chemistry - D & F Block Elements</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 9 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 10 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 10</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Probability Distributions | Physics - Mole Concept | Chemistry - Coordination Compounds</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Linear Programming | Physics - Chemical Bonding | Chemistry - Bio-Molecules</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Conic Sections | Physics - Hydrogen & Its Compounds | Chemistry - Environmental Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Statistics | Physics - Hydrocarbons | Chemistry - Chemical Kinetics</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Differential Equations | Physics - Thermodynamics | Chemistry - Surface Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Applications of Derivatives | Physics - Oscillations | Chemistry - Electrochemistry</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 10 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 11 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 11</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Sequences and Series | Physics - Gravitation | Chemistry - Thermodynamics (Part 2)</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Matrices | Physics - Mechanical Properties of Solids | Chemistry - Chemical Equilibrium</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Determinants | Physics - Mechanical Properties of Fluids | Chemistry - Ionic Equilibrium</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Vectors | Physics - Thermal Properties of Matter | Chemistry - Redox Reactions</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Linear Algebra | Physics - Kinetic Theory of Gases | Chemistry - Hydrocarbons (Alkenes & Alkynes)</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Probability Distributions | Physics - Thermodynamics | Chemistry - Organic Chemistry Basics</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 11 topics</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 12 -->
+        <div class="week">
+            <h2><i class="fas fa-calendar-week"></i> Week 12</h2>
+            <ul>
+                <li><i class="fas fa-calculator"></i> Day 1: Maths - Limits and Continuity | Physics - Oscillations | Chemistry - Environmental Chemistry</li>
+                <li><i class="fas fa-calculator"></i> Day 2: Maths - Statistical Analysis | Physics - Waves | Chemistry - Hydrocarbons (Alcohols & Ethers)</li>
+                <li><i class="fas fa-calculator"></i> Day 3: Maths - Graphs of Functions | Physics - Sound | Chemistry - Biomolecules</li>
+                <li><i class="fas fa-calculator"></i> Day 4: Maths - Functions and Their Properties | Physics - Wave Optics | Chemistry - Polymers</li>
+                <li><i class="fas fa-calculator"></i> Day 5: Maths - Limits and Continuity | Physics - Geometrical Optics | Chemistry - Solutions</li>
+                <li><i class="fas fa-calculator"></i> Day 6: Maths - Linear Programming | Physics - Electrostatics | Chemistry - Basic Concepts of Chemistry</li>
+                <li><i class="fas fa-check-circle"></i> <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test covering  Week 12 topics</a></li>
+            </ul>
+        </div>
+             <!-- Mock Test Series -->
+<div class="week">
+    <h2><i class="fas fa-calendar-week"></i> Mock Test Series</h2>
+    <ul>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 1: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 2: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 3: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 4: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 5: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 6: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+        <li><i class="fas fa-check-circle"></i> 
+            <a href="{{ url_for('mock_test') }}" class="nav-item">Day 7: Mock Test | Maths | Physics | Chemistry</a>
+        </li>
+    </ul>
+</div>
+
+
+        <a href="/" class="back-btn">Back to Home</a>
+    </div>
+
+    
+</body>
+</html>

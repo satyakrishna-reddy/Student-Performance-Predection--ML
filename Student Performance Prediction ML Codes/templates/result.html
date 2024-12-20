@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <!-- Student Details -->
+    <div class="student-details">
+        <h1>Performance Report for {{ name }}</h1>
+        <p>Roll Number: {{ roll_no }}</p>
+        <p class="avg-marks">Overall Average Marks: {{ avg_marks }}</p>
+
+        <!-- Displaying Subject-wise Average Marks -->
+        <div class="subject-averages">
+            <p>Maths Average: {{ subject_averages['Maths'] }}</p>
+            <p>Physics Average: {{ subject_averages['Physics'] }}</p>
+            <p>Chemistry Average: {{ subject_averages['Chemistry'] }}</p>
+        </div>
+
+        <!-- Display the expected rank -->
+        <div class="expected-rank">
+            <h2>Expected JEE Mains Rank: {{ expected_rank }}</h2>
+        </div>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="graphs-container">
+        <div class="graph">
+            <h3>Maths</h3>
+            <img src="{{ img1 }}" alt="Maths Graph">
+        </div>
+        <div class="graph">
+            <h3>Physics</h3>
+            <img src="{{ img2 }}" alt="Physics Graph">
+        </div>
+        <div class="graph">
+            <h3>Chemistry</h3>
+            <img src="{{ img3 }}" alt="Chemistry Graph">
+        </div>
+    </div>
+
+    <!-- Overall Performance Graph -->
+    <div class="overall-graph">
+        <h2>Overall Performance</h2>
+        <img src="{{ overall_avg }}" alt="Overall Performance Graph">
+        <form action="{{ url_for('set_target') }}" method="GET">
+            
+        </form>
+    </div>
+    
+</div>
+<a href="{{ url_for('set_target') }}" class="btn-set-target">Set Your Target</a>
+
+
+<footer>
+    <p>© 2024 Performance Tracker. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
